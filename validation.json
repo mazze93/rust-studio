@@ -1,0 +1,336 @@
+[
+  {
+    "command": [
+      "rustc",
+      "+1.99.1",
+      "--edition=2024",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/basics.rs",
+      "-o",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/basics"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/basics"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "rustc",
+      "+1.99.1",
+      "--edition=2024",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/move.rs",
+      "-o",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/move"
+    ],
+    "exit_code": 1,
+    "passed": true,
+    "expected_diagnostic": "E0382"
+  },
+  {
+    "command": [
+      "rustc",
+      "+1.99.1",
+      "--edition=2024",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/borrow.rs",
+      "-o",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/borrow"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/borrow"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "rustc",
+      "+1.99.1",
+      "--edition=2024",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/conflict.rs",
+      "-o",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/conflict"
+    ],
+    "exit_code": 1,
+    "passed": true,
+    "expected_diagnostic": "E0502"
+  },
+  {
+    "command": [
+      "rustc",
+      "+1.99.1",
+      "--edition=2024",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/last_use.rs",
+      "-o",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/last_use"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/last_use"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "rustc",
+      "+1.99.1",
+      "--edition=2024",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/clone.rs",
+      "-o",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/clone"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/clone"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "rustc",
+      "+1.99.1",
+      "--edition=2024",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/copy.rs",
+      "-o",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/copy"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/copy"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "rustc",
+      "+1.99.1",
+      "--edition=2024",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/lifetime.rs",
+      "-o",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/lifetime"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/lifetime"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "rustc",
+      "+1.99.1",
+      "--edition=2024",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/dangling.rs",
+      "-o",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/dangling"
+    ],
+    "exit_code": 1,
+    "passed": true,
+    "expected_diagnostic": "E0515"
+  },
+  {
+    "command": [
+      "rustc",
+      "+1.99.1",
+      "--edition=2024",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/enum.rs",
+      "-o",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/enum"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/enum"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "rustc",
+      "+1.99.1",
+      "--edition=2024",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/result.rs",
+      "-o",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/result"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/result"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "rustc",
+      "+1.99.1",
+      "--edition=2024",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/iterator.rs",
+      "-o",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/iterator"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/iterator"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "rustc",
+      "+1.99.1",
+      "--edition=2024",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/trait.rs",
+      "-o",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/trait"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/trait"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "rustc",
+      "+1.99.1",
+      "--edition=2024",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/thread.rs",
+      "-o",
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/thread"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "/Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/thread"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "cargo",
+      "fmt",
+      "--check"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "cargo",
+      "check",
+      "--locked",
+      "--offline"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "cargo",
+      "clippy",
+      "--locked",
+      "--offline",
+      "--all-targets",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "cargo",
+      "build",
+      "--release",
+      "--locked",
+      "--offline"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--offline",
+      "--",
+      "scores.txt"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "cargo",
+      "llvm-cov",
+      "report",
+      "--summary-only"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "cargo",
+      "audit",
+      "--no-fetch",
+      "--offline"
+    ],
+    "exit_code": 2,
+    "passed": false
+  },
+  {
+    "command": [
+      "cargo",
+      "deny",
+      "--offline",
+      "check"
+    ],
+    "exit_code": 1,
+    "passed": false
+  }
+]

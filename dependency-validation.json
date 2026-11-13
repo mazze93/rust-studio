@@ -1,0 +1,23 @@
+[
+  {
+    "command": [
+      "cargo",
+      "audit",
+      "--no-fetch"
+    ],
+    "exit_code": 0,
+    "passed": true,
+    "context": "outside sandbox; correct cargo-audit flags; advisory database already fetched"
+  },
+  {
+    "command": [
+      "cargo",
+      "deny",
+      "--offline",
+      "check"
+    ],
+    "exit_code": 0,
+    "passed": true,
+    "context": "outside sandbox; correct cargo-audit flags; advisory database already fetched"
+  }
+]

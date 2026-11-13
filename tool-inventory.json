@@ -1,0 +1,87 @@
+{
+  "verified_on": "2026-10-31",
+  "zed_version": "1.26.2",
+  "commands": [
+    {
+      "command": [
+        "rustc",
+        "+stable",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "rustc 1.99.1 (58cf8f9c3 2026-10-13)\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "cargo",
+        "+stable",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "cargo 1.99.1 (5f94df478 2026-08-27)\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "rustup",
+        "component",
+        "list",
+        "--toolchain",
+        "stable",
+        "--installed"
+      ],
+      "exit_code": 0,
+      "stdout": "cargo-aarch64-apple-darwin\nclippy-aarch64-apple-darwin\nllvm-tools-aarch64-apple-darwin\nrust-analyzer-aarch64-apple-darwin\nrust-docs-aarch64-apple-darwin\nrust-src\nrust-std-aarch64-apple-darwin\nrust-std-wasm32-unknown-unknown\nrust-std-x86_64-apple-darwin\nrustc-aarch64-apple-darwin\nrustfmt-aarch64-apple-darwin\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "rustup",
+        "target",
+        "list",
+        "--toolchain",
+        "stable",
+        "--installed"
+      ],
+      "exit_code": 0,
+      "stdout": "aarch64-apple-darwin\nwasm32-unknown-unknown\nx86_64-apple-darwin\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "brew",
+        "list",
+        "--versions",
+        "cargo-nextest",
+        "cargo-deny",
+        "bacon",
+        "cargo-llvm-cov",
+        "rustup"
+      ],
+      "exit_code": 0,
+      "stdout": "bacon 3.26.0_1\ncargo-deny 0.20.2\ncargo-llvm-cov 0.9.1\ncargo-nextest 0.9.150\nrustup 1.29.2\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "cargo",
+        "audit",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "cargo-audit-audit 0.22.2\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "cargo",
+        "about",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "cargo-about 0.9.2\n",
+      "stderr": ""
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "verified_on": "2026-10-31",
+  "browser": "Chrome DevTools controlled page",
+  "desktop_viewport": [
+    1440,
+    953
+  ],
+  "desktop_overflow": false,
+  "mobile_iframe_width": 390,
+  "mobile_document_scroll_width": 375,
+  "mobile_overflow": false,
+  "ownership_scenarios_passed": [
+    "move",
+    "borrow",
+    "conflict",
+    "last_use",
+    "clone",
+    "copy"
+  ],
+  "topic_filter_no_match": "0 matching chapters",
+  "progress_toggle": "1 of 4 sessions completed.",
+  "copy_success_simulated": true,
+  "clipboard_denial_fallback_simulated": true,
+  "broken_internal_anchors": [],
+  "external_resources_loaded": 0,
+  "visual_inspection": "desktop hero and chapter layout inspected",
+  "limits": "Mobile iframe, not physical device; clipboard branches simulated without replacing user clipboard contents."
+}

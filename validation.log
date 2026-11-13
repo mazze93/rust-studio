@@ -1,0 +1,199 @@
+$ rustc +1.99.1 --edition=2024 /Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/basics.rs -o /Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/basics
+
+EXIT: 0
+
+$ /Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/basics
+high after 1 attempt
+
+EXIT: 0
+
+$ rustc +1.99.1 --edition=2024 /Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/move.rs -o /Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/move
+error[E0382]: borrow of moved value: `first`
+ --> /Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/move.rs:4:16
+  |
+2 |     let first = String::from("signal");
+  |         ----- move occurs because `first` has type `String`, which does not implement the `Copy` trait
+3 |     let second = first;
+  |                  ----- value moved here
+4 |     println!("{first} / {second}");
+  |                ^^^^^ value borrowed here after move
+  |
+help: consider cloning the value if the performance cost is acceptable
+  |
+3 |     let second = first.clone();
+  |                       ++++++++
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0382`.
+
+EXIT: 1
+
+$ rustc +1.99.1 --edition=2024 /Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/borrow.rs -o /Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/borrow
+
+EXIT: 0
+
+$ /Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/borrow
+signal / signal
+
+EXIT: 0
+
+$ rustc +1.99.1 --edition=2024 /Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/conflict.rs -o /Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/conflict
+error[E0502]: cannot borrow `text` as mutable because it is also borrowed as immutable
+ --> /Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/conflict.rs:4:5
+  |
+3 |     let view = &text;
+  |                ----- immutable borrow occurs here
+4 |     text.push('!');
+  |     ^^^^^^^^^^^^^^ mutable borrow occurs here
+5 |     println!("{view}");
+  |                ---- immutable borrow later used here
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0502`.
+
+EXIT: 1
+
+$ rustc +1.99.1 --edition=2024 /Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/last_use.rs -o /Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/last_use
+
+EXIT: 0
+
+$ /Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/last_use
+signal
+signal!
+
+EXIT: 0
+
+$ rustc +1.99.1 --edition=2024 /Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/clone.rs -o /Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/clone
+
+EXIT: 0
+
+$ /Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/clone
+
+EXIT: 0
+
+$ rustc +1.99.1 --edition=2024 /Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/copy.rs -o /Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/copy
+
+EXIT: 0
+
+$ /Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/copy
+
+EXIT: 0
+
+$ rustc +1.99.1 --edition=2024 /Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/lifetime.rs -o /Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/lifetime
+
+EXIT: 0
+
+$ /Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/lifetime
+
+EXIT: 0
+
+$ rustc +1.99.1 --edition=2024 /Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/dangling.rs -o /Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/dangling
+error[E0515]: cannot return reference to local variable `local`
+ --> /Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/dangling.rs:3:5
+  |
+3 |     &local
+  |     ^^^^^^ returns a reference to data owned by the current function
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0515`.
+
+EXIT: 1
+
+$ rustc +1.99.1 --edition=2024 /Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/enum.rs -o /Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/enum
+
+EXIT: 0
+
+$ /Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/enum
+waiting
+worker 7
+done: report
+
+EXIT: 0
+
+$ rustc +1.99.1 --edition=2024 /Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/result.rs -o /Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/result
+
+EXIT: 0
+
+$ /Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/result
+
+EXIT: 0
+
+$ rustc +1.99.1 --edition=2024 /Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/iterator.rs -o /Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/iterator
+
+EXIT: 0
+
+$ /Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/iterator
+
+EXIT: 0
+
+$ rustc +1.99.1 --edition=2024 /Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/trait.rs -o /Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/trait
+
+EXIT: 0
+
+$ /Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/trait
+4 samples
+
+EXIT: 0
+
+$ rustc +1.99.1 --edition=2024 /Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/examples/thread.rs -o /Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/thread
+
+EXIT: 0
+
+$ /Users/daedalus/Documents/Codex/2026-10-31/ca/work/example-binaries/thread
+
+EXIT: 0
+
+$ cargo fmt --check
+
+EXIT: 0
+
+$ cargo check --locked --offline
+    Checking signal-notebook v0.1.0 (/Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/starter)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.09s
+
+EXIT: 0
+
+$ cargo clippy --locked --offline --all-targets -- -D warnings
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.07s
+
+EXIT: 0
+
+$ cargo build --release --locked --offline
+   Compiling signal-notebook v0.1.0 (/Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/starter)
+    Finished `release` profile [optimized] target(s) in 0.47s
+
+EXIT: 0
+
+$ cargo run --locked --offline -- scores.txt
+4 scores · mean 62.50
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.00s
+     Running `target/debug/signal-notebook scores.txt`
+
+EXIT: 0
+
+$ cargo llvm-cov report --summary-only
+Filename                      Regions    Missed Regions     Cover   Functions  Missed Functions  Executed       Lines      Missed Lines     Cover    Branches   Missed Branches     Cover
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+lib.rs                             98                 0   100.00%          14                 0   100.00%          66                 0   100.00%           0                 0         -
+main.rs                            36                 4    88.89%           2                 0   100.00%          20                 2    90.00%           0                 0         -
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TOTAL                             134                 4    97.01%          16                 0   100.00%          86                 2    97.67%           0                 0         -
+
+EXIT: 0
+
+$ cargo audit --no-fetch --offline
+error: unexpected argument '--offline' found
+
+Usage: cargo audit --no-fetch
+
+For more information, try '--help'.
+
+EXIT: 2
+
+$ cargo deny --offline check
+2026-10-31 11:35:10 [ERROR] failed to acquire advisory database lock: failed to obtain lock file '/Users/daedalus/.cargo/advisory-dbs/db.lock': attempted to take an exclusive lock on a read-only path
+
+EXIT: 1

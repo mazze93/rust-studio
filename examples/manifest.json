@@ -1,0 +1,16 @@
+{
+  "basics": "pass",
+  "move": "E0382",
+  "borrow": "pass",
+  "conflict": "E0502",
+  "last_use": "pass",
+  "clone": "pass",
+  "copy": "pass",
+  "lifetime": "pass",
+  "dangling": "E0515",
+  "enum": "pass",
+  "result": "pass",
+  "iterator": "pass",
+  "trait": "pass",
+  "thread": "pass"
+}

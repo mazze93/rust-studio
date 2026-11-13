@@ -1,0 +1,13 @@
+[package]
+name = "signal-notebook"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.99"
+publish = false
+description = "An offline Rust learning project: validate and summarize scores"
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[lints.clippy]
+all = "warn"
