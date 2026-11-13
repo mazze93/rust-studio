@@ -1,3 +1,4 @@
+// expect: pass
 #[derive(Debug)]
 enum Job { Queued, Running { worker: u32 }, Complete(String) }
 fn describe(job: &Job) -> String {

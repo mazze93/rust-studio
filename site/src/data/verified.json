@@ -1,0 +1,109 @@
+{
+  "toolchain": "1.100.0",
+  "rustc": "rustc 1.100.0 (0ef1bc386 2026-11-09)",
+  "edition": "2024",
+  "starter": {
+    "command": "cargo run -- scores.txt",
+    "stdout": "4 scores · mean 62.50\n"
+  },
+  "examples": [
+    {
+      "name": "basics",
+      "expect": "pass",
+      "source": "// expect: pass\nfn label(score: u8) -> &'static str {\n    if score >= 80 { \"high\" } else { \"ordinary\" }\n}\nfn main() {\n    let raw = \"81\";\n    let score: u8 = raw.parse().expect(\"the literal is a valid u8\");\n    let mut attempts = 0;\n    attempts += 1;\n    println!(\"{} after {attempts} attempt\", label(score));\n}\n",
+      "stdout": "high after 1 attempt\n",
+      "stderr": ""
+    },
+    {
+      "name": "borrow",
+      "expect": "pass",
+      "source": "// expect: pass\nfn main() {\n    let first = String::from(\"signal\");\n    let second = &first;\n    println!(\"{first} / {second}\");\n}\n",
+      "stdout": "signal / signal\n",
+      "stderr": ""
+    },
+    {
+      "name": "clone",
+      "expect": "pass",
+      "source": "// expect: pass\nfn main() {\n    let first = String::from(\"signal\");\n    let mut second = first.clone();\n    second.push('!');\n    assert_eq!(first, \"signal\");\n    assert_eq!(second, \"signal!\");\n}\n",
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "conflict",
+      "expect": "E0502",
+      "source": "// expect: E0502\nfn main() {\n    let mut text = String::from(\"signal\");\n    let view = &text;\n    text.push('!');\n    println!(\"{view}\");\n}\n",
+      "stdout": "",
+      "stderr": "error[E0502]: cannot borrow `text` as mutable because it is also borrowed as immutable\n --> examples/conflict.rs:5:5\n  |\n4 |     let view = &text;\n  |                ----- immutable borrow occurs here\n5 |     text.push('!');\n  |     ^^^^^^^^^^^^^^ mutable borrow occurs here\n6 |     println!(\"{view}\");\n  |                ---- immutable borrow later used here\n\nerror: aborting due to 1 previous error\n\nFor more information about this error, try `rustc --explain E0502`.\n"
+    },
+    {
+      "name": "copy",
+      "expect": "pass",
+      "source": "// expect: pass\nfn main() {\n    let first = 42_u32;\n    let second = first; // u32 implements Copy\n    assert_eq!(first, second);\n}\n",
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "dangling",
+      "expect": "E0515",
+      "source": "// expect: E0515\nfn invalid() -> &'static str {\n    let local = String::from(\"signal\");\n    &local\n}\nfn main() { println!(\"{}\", invalid()); }\n",
+      "stdout": "",
+      "stderr": "error[E0515]: cannot return reference to local variable `local`\n --> examples/dangling.rs:4:5\n  |\n4 |     &local\n  |     ^^^^^^ returns a reference to data owned by the current function\n\nerror: aborting due to 1 previous error\n\nFor more information about this error, try `rustc --explain E0515`.\n"
+    },
+    {
+      "name": "enum",
+      "expect": "pass",
+      "source": "// expect: pass\n#[derive(Debug)]\nenum Job { Queued, Running { worker: u32 }, Complete(String) }\nfn describe(job: &Job) -> String {\n    match job {\n        Job::Queued => \"waiting\".to_owned(),\n        Job::Running { worker } => format!(\"worker {worker}\"),\n        Job::Complete(output) => format!(\"done: {output}\"),\n    }\n}\nfn main() {\n    let jobs = [Job::Queued, Job::Running { worker: 7 },\n                Job::Complete(\"report\".into())];\n    for job in &jobs { println!(\"{}\", describe(job)); }\n}\n",
+      "stdout": "waiting\nworker 7\ndone: report\n",
+      "stderr": ""
+    },
+    {
+      "name": "iterator",
+      "expect": "pass",
+      "source": "// expect: pass\nfn main() {\n    let words = [String::from(\"rust\"), String::from(\"is\"), String::from(\"clear\")];\n    let long: Vec<&str> = words.iter()\n        .map(String::as_str)\n        .filter(|word| word.len() > 2)\n        .collect();\n    assert_eq!(long, [\"rust\", \"clear\"]);\n    assert_eq!(words.len(), 3); // the array was borrowed\n}\n",
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "last_use",
+      "expect": "pass",
+      "source": "// expect: pass\nfn main() {\n    let mut text = String::from(\"signal\");\n    let view = &text;\n    println!(\"{view}\"); // last use of the shared borrow\n    text.push('!');\n    println!(\"{text}\");\n}\n",
+      "stdout": "signal\nsignal!\n",
+      "stderr": ""
+    },
+    {
+      "name": "lifetime",
+      "expect": "pass",
+      "source": "// expect: pass\nfn longer<'a>(left: &'a str, right: &'a str) -> &'a str {\n    if left.len() >= right.len() { left } else { right }\n}\nfn main() {\n    let left = String::from(\"signal\");\n    let right = String::from(\"ok\");\n    assert_eq!(longer(&left, &right), \"signal\");\n}\n",
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "move",
+      "expect": "E0382",
+      "source": "// expect: E0382\nfn main() {\n    let first = String::from(\"signal\");\n    let second = first;\n    println!(\"{first} / {second}\");\n}\n",
+      "stdout": "",
+      "stderr": "error[E0382]: borrow of moved value: `first`\n --> examples/move.rs:5:16\n  |\n3 |     let first = String::from(\"signal\");\n  |         ----- move occurs because `first` has type `String`, which does not implement the `Copy` trait\n4 |     let second = first;\n  |                  ----- value moved here\n5 |     println!(\"{first} / {second}\");\n  |                ^^^^^ value borrowed here after move\n  |\nhelp: consider cloning the value if the performance cost is acceptable\n  |\n4 |     let second = first.clone();\n  |                       ++++++++\n\nerror: aborting due to 1 previous error\n\nFor more information about this error, try `rustc --explain E0382`.\n"
+    },
+    {
+      "name": "result",
+      "expect": "pass",
+      "source": "// expect: pass\nuse std::num::ParseIntError;\nfn double(input: &str) -> Result<u16, ParseIntError> {\n    let value: u8 = input.parse()?;\n    Ok(u16::from(value) * 2)\n}\nfn main() -> Result<(), ParseIntError> {\n    assert_eq!(double(\"128\")?, 256);\n    assert!(double(\"invalid\").is_err());\n    Ok(())\n}\n",
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "thread",
+      "expect": "pass",
+      "source": "// expect: pass\nfn main() {\n    let values = [2, 4, 6];\n    let total = std::thread::scope(|scope| {\n        let handle = scope.spawn(|| values.iter().sum::<i32>());\n        handle.join().expect(\"worker should not panic\")\n    });\n    assert_eq!(total, 12);\n}\n",
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "trait",
+      "expect": "pass",
+      "source": "// expect: pass\ntrait Summary { fn summary(&self) -> String; }\nstruct Report { count: usize }\nimpl Summary for Report {\n    fn summary(&self) -> String { format!(\"{} samples\", self.count) }\n}\nfn show(item: &impl Summary) { println!(\"{}\", item.summary()); }\nfn main() { show(&Report { count: 4 }); }\n",
+      "stdout": "4 samples\n",
+      "stderr": ""
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+// expect: pass
 fn main() {
     let mut text = String::from("signal");
     let view = &text;

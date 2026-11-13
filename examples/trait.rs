@@ -1,3 +1,4 @@
+// expect: pass
 trait Summary { fn summary(&self) -> String; }
 struct Report { count: usize }
 impl Summary for Report {

@@ -1,3 +1,4 @@
+// expect: pass
 fn label(score: u8) -> &'static str {
     if score >= 80 { "high" } else { "ordinary" }
 }

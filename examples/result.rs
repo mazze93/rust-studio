@@ -1,3 +1,4 @@
+// expect: pass
 use std::num::ParseIntError;
 fn double(input: &str) -> Result<u16, ParseIntError> {
     let value: u8 = input.parse()?;

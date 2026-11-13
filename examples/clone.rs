@@ -1,3 +1,4 @@
+// expect: pass
 fn main() {
     let first = String::from("signal");
     let mut second = first.clone();

@@ -1,0 +1,5 @@
+[workspace]
+members = ["verify"]
+# The starter is a standalone teaching project with its own lockfile and pin.
+exclude = ["starter"]
+resolver = "3"

@@ -1,3 +1,4 @@
+// expect: pass
 fn main() {
     let words = [String::from("rust"), String::from("is"), String::from("clear")];
     let long: Vec<&str> = words.iter()

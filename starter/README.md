@@ -1,13 +1,13 @@
 # Signal Notebook — your Rust development bench
 
-A dependency-free CLI and library for learning ownership, validated types, error handling, iterators, and tests. Built and checked with Rust 1.99.1, edition 2024, on Apple Silicon macOS.
+A dependency-free CLI and library for learning ownership, validated types, error handling, iterators, and tests. Built and checked with Rust 1.100.0, edition 2024. CI re-checks it on every push.
 
 ## Start
 
 Open this folder in Zed, or use a terminal:
 
 ```sh
-cd "/Users/daedalus/Documents/Codex/2026-10-31/ca/outputs/rust-studio/starter"
+cd starter            # from the rust-studio repository root
 source "$HOME/.cargo/env"
 cargo run -- scores.txt
 ```
@@ -32,7 +32,7 @@ bacon
 
 Nextest runs the eight unit/integration tests; the documentation test runs with `cargo test --doc`. Coverage HTML appears in `target/llvm-cov/html/index.html`. Cargo docs appear in `target/doc/signal_notebook/index.html`.
 
-Use `cargo audit` and `cargo deny check` for dependency checks. The included deny.toml is an example policy only. It ignores the unpublished local crate for license checking; with no external dependencies, its three example license allowances generate benign unmatched-license warnings. Change the policy deliberately when adding dependencies.
+Use `cargo audit` and `cargo deny check` for dependency checks. The included deny.toml is an example policy only. It ignores the unpublished local crate for license checking and, while there are no external dependencies, allows its example license allowances to go unmatched instead of warning. Change the policy deliberately when adding dependencies.
 
 ## Navigate
 
@@ -69,6 +69,6 @@ Breakpoint, launch and continue were verified. Apple's LLDB reports no Rust lang
 1. Add `maximum(&[Score]) -> Option<Score>` and test empty, singleton and repeated maxima.
 2. Add comment lines while preserving physical line numbers in errors.
 3. Compare a streaming parser with whole-file loading on representative input.
-4. Explain each ownership experiment in the adjacent HTML primer before revealing its result.
+4. Explain each ownership experiment in the primer (https://rust.mazzeleczzare.com/#ownership) before revealing its result.
 
 Keep Cargo.lock with this application. Use `--offline` for core builds and tests once the pinned toolchain is installed; this starter has no registry dependencies. Security checks still need their advisory data refreshed periodically.

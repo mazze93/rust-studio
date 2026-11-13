@@ -1,0 +1,13 @@
+[package]
+name = "studio-verify"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.100"
+publish = false
+description = "Compiles every example with the pinned rustc and records the real compiler output the site renders"
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[lints.clippy]
+all = "warn"

@@ -1,0 +1,7 @@
+# The one compiler this repository is verified against. starter/ carries its
+# own copy so it still works when copied out on its own; `studio-verify`
+# fails if the two pins disagree.
+[toolchain]
+channel = "1.100.0"
+profile = "default"
+components = ["rustfmt", "clippy", "rust-src", "rust-analyzer", "llvm-tools-preview"]

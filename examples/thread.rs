@@ -1,3 +1,4 @@
+// expect: pass
 fn main() {
     let values = [2, 4, 6];
     let total = std::thread::scope(|scope| {
