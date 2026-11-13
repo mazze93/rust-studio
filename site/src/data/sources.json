@@ -1,17 +1,10 @@
 [
   {
     "id": "release",
-    "title": "Rust Release Team \u00b7 Rust 1.99.1",
-    "url": "https://blog.rust-lang.org/2026/10/15/Rust-1.99.1/",
-    "note": "2026-10-15; current stable confirmed with rustup.",
-    "accessed": "2026-10-31"
-  },
-  {
-    "id": "release99",
-    "title": "Rust Release Team \u00b7 Rust 1.99.0",
-    "url": "https://blog.rust-lang.org/2026/10/01/Rust-1.99.0/",
-    "note": "2026-10-01; new APIs and revised leak guidance.",
-    "accessed": "2026-10-31"
+    "title": "Rust Release Team · Rust 1.100.0",
+    "url": "https://blog.rust-lang.org/2026/11/12/Rust-1.100.0/",
+    "note": "2026-11-12; current stable, pinned by this site's examples and starter.",
+    "accessed": "2026-11-12"
   },
   {
     "id": "edition",
@@ -29,154 +22,154 @@
   },
   {
     "id": "basics",
-    "title": "The Book \u00b7 Variables and mutability",
+    "title": "The Book · Variables and mutability",
     "url": "https://doc.rust-lang.org/book/ch03-01-variables-and-mutability.html",
     "note": "Bindings, mutability and shadowing.",
     "accessed": "2026-10-31"
   },
   {
     "id": "borrow",
-    "title": "The Book \u00b7 References and borrowing",
+    "title": "The Book · References and borrowing",
     "url": "https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html",
     "note": "Reference validity and borrow conflicts.",
     "accessed": "2026-10-31"
   },
   {
     "id": "life",
-    "title": "The Book \u00b7 Lifetimes",
+    "title": "The Book · Lifetimes",
     "url": "https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html",
     "note": "Lifetime relationships and dangling references.",
     "accessed": "2026-10-31"
   },
   {
     "id": "enums",
-    "title": "The Book \u00b7 Enums and pattern matching",
+    "title": "The Book · Enums and pattern matching",
     "url": "https://doc.rust-lang.org/book/ch06-00-enums.html",
     "note": "Explicit states and Option.",
     "accessed": "2026-10-31"
   },
   {
     "id": "errors",
-    "title": "The Book \u00b7 Result",
+    "title": "The Book · Result",
     "url": "https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html",
     "note": "Fallible operations and propagation.",
     "accessed": "2026-10-31"
   },
   {
     "id": "strings",
-    "title": "The Book \u00b7 UTF-8 strings",
+    "title": "The Book · UTF-8 strings",
     "url": "https://doc.rust-lang.org/book/ch08-02-strings.html",
     "note": "Owned strings, slices and Unicode.",
     "accessed": "2026-10-31"
   },
   {
     "id": "iter",
-    "title": "The Book \u00b7 Iterators",
+    "title": "The Book · Iterators",
     "url": "https://doc.rust-lang.org/book/ch13-02-iterators.html",
     "note": "Lazy adaptation and consumption.",
     "accessed": "2026-10-31"
   },
   {
     "id": "traits",
-    "title": "The Book \u00b7 Traits",
+    "title": "The Book · Traits",
     "url": "https://doc.rust-lang.org/book/ch10-02-traits.html",
     "note": "Shared behavior and bounds.",
     "accessed": "2026-10-31"
   },
   {
     "id": "send",
-    "title": "The Book \u00b7 Send and Sync",
+    "title": "The Book · Send and Sync",
     "url": "https://doc.rust-lang.org/book/ch16-04-extensible-concurrency-sync-and-send.html",
     "note": "Thread transfer and shared references.",
     "accessed": "2026-10-31"
   },
   {
     "id": "gallant",
-    "title": "Andrew Gallant \u00b7 Using unwrap() in Rust is Okay",
+    "title": "Andrew Gallant · Using unwrap() in Rust is Okay",
     "url": "https://burntsushi.net/unwrap/",
     "note": "2022-08-08; nuanced panic and invariant policy.",
     "accessed": "2026-10-31"
   },
   {
     "id": "ryhl",
-    "title": "Alice Ryhl \u00b7 Async: What is blocking?",
+    "title": "Alice Ryhl · Async: What is blocking?",
     "url": "https://ryhl.io/blog/async-what-is-blocking/",
     "note": "2020-12-21; cooperative scheduling, cross-checked against current Tokio docs.",
     "accessed": "2026-10-31"
   },
   {
     "id": "tokio",
-    "title": "Tokio \u00b7 spawn_blocking",
+    "title": "Tokio · spawn_blocking",
     "url": "https://docs.rs/tokio/latest/tokio/task/fn.spawn_blocking.html",
     "note": "Current API documentation; bounded concurrency and cancellation limitations.",
     "accessed": "2026-10-31"
   },
   {
     "id": "perf",
-    "title": "Nicholas Nethercote \u00b7 The Rust Performance Book",
+    "title": "Nicholas Nethercote · The Rust Performance Book",
     "url": "https://nnethercote.github.io/perf-book/general-tips.html",
     "note": "Living guide; optimize measured hot paths and data structures.",
     "accessed": "2026-10-31"
   },
   {
     "id": "simple",
-    "title": "Matthias Endler \u00b7 Be Simple",
+    "title": "Matthias Endler · Be Simple",
     "url": "https://corrode.dev/blog/simple/",
     "note": "Updated 2025-11-14; reduce unnecessary abstraction.",
     "accessed": "2026-10-31"
   },
   {
     "id": "api",
-    "title": "Rust library team \u00b7 API Guidelines",
+    "title": "Rust library team · API Guidelines",
     "url": "https://rust-lang.github.io/api-guidelines/",
     "note": "Practitioner recommendations, not mandatory language rules.",
     "accessed": "2026-10-31"
   },
   {
     "id": "types",
-    "title": "API Guidelines \u00b7 Type safety",
+    "title": "API Guidelines · Type safety",
     "url": "https://rust-lang.github.io/api-guidelines/type-safety.html",
     "note": "Newtypes, meaningful argument types and builders.",
     "accessed": "2026-10-31"
   },
   {
     "id": "ra",
-    "title": "rust-analyzer \u00b7 Installation",
+    "title": "rust-analyzer · Installation",
     "url": "https://rust-analyzer.github.io/book/installation.html",
     "note": "Language server plus standard-library sources.",
     "accessed": "2026-10-31"
   },
   {
     "id": "zed",
-    "title": "Zed \u00b7 Rust",
+    "title": "Zed · Rust",
     "url": "https://zed.dev/docs/languages/rust",
     "note": "Native Rust integration, language server and debugging.",
     "accessed": "2026-10-31"
   },
   {
     "id": "nextest",
-    "title": "nextest \u00b7 Installation",
+    "title": "nextest · Installation",
     "url": "https://nexte.st/docs/installation/pre-built-binaries/",
     "note": "Official distribution documentation.",
     "accessed": "2026-10-31"
   },
   {
     "id": "coverage",
-    "title": "cargo-llvm-cov \u00b7 Project documentation",
+    "title": "cargo-llvm-cov · Project documentation",
     "url": "https://github.com/taiki-e/cargo-llvm-cov",
     "note": "Coverage workflow and nightly-only capabilities.",
     "accessed": "2026-10-31"
   },
   {
     "id": "deny",
-    "title": "cargo-deny \u00b7 Configuration",
+    "title": "cargo-deny · Configuration",
     "url": "https://embarkstudios.github.io/cargo-deny/checks/cfg.html",
     "note": "Dependency policies and configuration discovery.",
     "accessed": "2026-10-31"
   },
   {
     "id": "install",
-    "title": "Cargo \u00b7 cargo install",
+    "title": "Cargo · cargo install",
     "url": "https://doc.rust-lang.org/cargo/commands/cargo-install.html",
     "note": "Binary installation, version selection and --locked tradeoffs.",
     "accessed": "2026-10-31"

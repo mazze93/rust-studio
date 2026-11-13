@@ -1,0 +1,10 @@
+---
+import Example from "../components/Example.astro";
+---
+<section id="lifetimes" class="chapter"><div class="chapter-title"><span class="index">05</span><div><h2>Lifetimes describe relationships</h2><p class="deck">They never keep a value alive for you.</p></div></div>
+<p>A lifetime annotation connects borrowed inputs and outputs. In this function, the returned reference is valid for a lifetime supported by both inputs. The compiler checks the actual call site. The annotation neither extends storage nor chooses which input is returned.</p>
+<Example name="lifetime" />
+<p>Here, “longer” means more UTF-8 bytes. If the caller needs ownership independent of the inputs, return a String. Returning a reference to a local String fails even if you write <code>'static</code>.</p>
+<details><summary>Why doesn’t 'static repair a dangling reference?</summary><Example name="dangling" /><p>The local allocation is dropped when the function returns. An annotation cannot prevent that. Return <code>local</code> as a String, or return a string literal that really does have static storage.</p></details>
+<p><code>T: 'static</code> means the type contains no borrowed references with shorter lifetimes. An owned String can meet that bound and still be dropped normally. It does not mean every such value lives forever.</p>
+<p class="cite">Read the source: <a href="https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html">The Book · Lifetimes</a></p></section>

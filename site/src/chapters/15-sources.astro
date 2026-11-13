@@ -1,0 +1,10 @@
+---
+import sources from "../data/sources.json";
+---
+<section id="sources" class="chapter"><div class="chapter-title"><span class="index">15</span><div><h2>The reading room</h2><p class="deck">Primary documentation and practitioners’ own writing.</p></div></div>
+<p>Each source shows the date its content was last consulted; every link was checked as reachable on 12 November 2026. Older essays are dated and used for durable design reasoning; version-sensitive guidance was checked against current official documentation. None of the authors reviewed or endorsed this primer.</p>
+<ol class="sources">
+  {sources.map((s) => (
+    <li id={`src-${s.id}`}><a href={s.url}>{s.title}</a><p>{s.note} <span class="accessed">Consulted {s.accessed}.</span></p></li>
+  ))}
+</ol></section>

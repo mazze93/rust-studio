@@ -1,0 +1,39 @@
+---
+import "../styles/primer.css";
+import "../styles/site.css";
+import { verified } from "../data/verified";
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="color-scheme" content="light" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="article" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header>
+      <a class="brand" href="/">RUST / THE WORKING FIELD GUIDE</a>
+      <span class="stamp">Edition 02 · rustc {verified.toolchain} · verified at build</span>
+    </header>
+    <slot />
+    <script>
+      import "../scripts/primer";
+    </script>
+  </body>
+</html>

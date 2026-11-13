@@ -1,0 +1,28 @@
+---
+// Renders an examples/*.rs file exactly as rustc saw it, with the outcome
+// and output recorded by studio-verify. The label is derived, never typed.
+import { example, passes, verified } from "../data/verified";
+
+interface Props {
+  name: string;
+}
+const ex = example(Astro.props.name);
+const ok = passes(ex);
+const toolchain = `rustc ${verified.toolchain}`;
+const label = ok
+  ? `Rust · examples/${ex.name}.rs · compiles and runs on ${toolchain}`
+  : `Rust · examples/${ex.name}.rs · rejected with ${ex.expect} by ${toolchain}`;
+const output = ok ? ex.stdout : ex.stderr;
+---
+<div class="codebox" data-outcome={ok ? "pass" : "fail"}>
+  <div class="codehead"><span>{label}</span><button class="copy" type="button">Copy</button></div>
+  <pre><code>{ex.source}</code></pre>
+  {
+    output && (
+      <details class="output">
+        <summary>{ok ? "Program output" : `Compiler diagnostic (${ex.expect})`}</summary>
+        <pre>{output}</pre>
+      </details>
+    )
+  }
+</div>

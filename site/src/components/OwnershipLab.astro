@@ -1,0 +1,129 @@
+---
+// Six predict-then-reveal ownership experiments. Code, verdict and the
+// diagnostic shown on reveal all come from studio-verify's real rustc run;
+// only the plain-language explanation is authored here.
+import { example, passes, verified } from "../data/verified";
+
+const cases = [
+  {
+    name: "move",
+    title: "Move a String, then use the old name",
+    explain:
+      "The String moved to second. Using first afterward is rejected. Passing ownership does not implicitly clone the allocation.",
+    owners: ["first · moved", "second · owner"],
+    middle: "String allocation",
+  },
+  {
+    name: "borrow",
+    title: "Borrow the String instead",
+    explain:
+      "second borrows first. Both names can be used for this shared read, and first remains the owner.",
+    owners: ["first · owner", "second · &String"],
+    middle: "String allocation",
+  },
+  {
+    name: "conflict",
+    title: "Mutate before a shared borrow’s final use",
+    explain:
+      "view is used after push. The shared borrow therefore conflicts with mutable access during push.",
+    owners: ["text · owner", "view · still needed"],
+    middle: "String allocation",
+  },
+  {
+    name: "last_use",
+    title: "Mutate after the borrow’s final use",
+    explain:
+      "The final use of view is before push. The compiler can end that borrow, permitting the subsequent mutation.",
+    owners: ["text · owner", "view · finished"],
+    middle: "String allocation",
+  },
+  {
+    name: "clone",
+    title: "Make a deliberate independent clone",
+    explain:
+      "clone creates an independent String. Mutation of second does not change first; copying the text has a cost.",
+    owners: ["first · owns original", "second · owns clone"],
+    middle: "two allocations",
+  },
+  {
+    name: "copy",
+    title: "Copy an integer",
+    explain:
+      "u32 implements Copy. The assignment copies its value; no String allocation is involved.",
+    owners: ["first · 42", "second · 42"],
+    middle: "integer values",
+  },
+].map((c) => ({ ...c, ex: example(c.name) }));
+---
+<div class="lab" data-lab>
+  <label for="scenario">Choose an experiment</label>
+  <select id="scenario">
+    {cases.map((c, i) => <option value={c.name}>{String(i + 1).padStart(2, "0")} / {c.title}</option>)}
+  </select>
+  {
+    cases.map((c, i) => (
+      <div class="lab-case" data-case={c.name} data-pass={String(passes(c.ex))} data-expect={c.ex.expect} hidden={i !== 0}>
+        <pre tabindex="0">{c.ex.source}</pre>
+        <p class="lab-explain" data-explain hidden>{c.explain}</p>
+        {!passes(c.ex) && (
+          <details class="output" data-diagnostic hidden>
+            <summary>What rustc {verified.toolchain} actually printed</summary>
+            <pre>{c.ex.stderr}</pre>
+          </details>
+        )}
+        <div class="ownership-map" data-owners={c.owners.join("|")}>
+          <span data-owner-a>predict ownership</span>
+          <span aria-hidden="true">→</span>
+          <strong>{c.middle}</strong>
+          <span aria-hidden="true">←</span>
+          <span data-owner-b>predict access</span>
+        </div>
+      </div>
+    ))
+  }
+  <div class="lab-actions">
+    <button type="button" data-predict="pass">I think it compiles</button>
+    <button type="button" data-predict="fail">I think it fails</button>
+  </div>
+  <div id="lab-result" role="status" aria-live="polite">
+    Predict the result, then compare your reasoning. Each verdict was produced by rustc {verified.toolchain} when this site was built.
+  </div>
+</div>
+
+<script>
+  const lab = document.querySelector<HTMLElement>("[data-lab]");
+  if (lab) {
+    const picker = lab.querySelector<HTMLSelectElement>("#scenario")!;
+    const result = lab.querySelector<HTMLElement>("#lab-result")!;
+    const intro = result.textContent ?? "";
+    const caseFor = (name: string) => lab.querySelector<HTMLElement>(`[data-case="${name}"]`)!;
+
+    const reset = () => {
+      lab.querySelectorAll<HTMLElement>("[data-case]").forEach((el) => {
+        const active = el.dataset.case === picker.value;
+        el.hidden = !active;
+        el.querySelectorAll<HTMLElement>("[data-explain],[data-diagnostic]").forEach((x) => (x.hidden = true));
+        el.querySelector("[data-owner-a]")!.textContent = "predict ownership";
+        el.querySelector("[data-owner-b]")!.textContent = "predict access";
+      });
+      result.textContent = intro;
+    };
+
+    const predict = (guessPass: boolean) => {
+      const el = caseFor(picker.value);
+      const pass = el.dataset.pass === "true";
+      const verdict = pass ? "Compiles." : `${el.dataset.expect}: rejected.`;
+      result.textContent = `${guessPass === pass ? "Correct." : "Try that reasoning again."} ${verdict}`;
+      el.querySelectorAll<HTMLElement>("[data-explain],[data-diagnostic]").forEach((x) => (x.hidden = false));
+      const [a, b] = (el.querySelector<HTMLElement>("[data-owners]")?.dataset.owners ?? "|").split("|");
+      el.querySelector("[data-owner-a]")!.textContent = a ?? "";
+      el.querySelector("[data-owner-b]")!.textContent = b ?? "";
+    };
+
+    picker.addEventListener("change", reset);
+    lab.querySelectorAll<HTMLButtonElement>("[data-predict]").forEach((button) =>
+      button.addEventListener("click", () => predict(button.dataset.predict === "pass")),
+    );
+    reset();
+  }
+</script>

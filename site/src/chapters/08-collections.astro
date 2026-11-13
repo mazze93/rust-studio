@@ -1,0 +1,9 @@
+---
+import Example from "../components/Example.astro";
+---
+<section id="collections" class="chapter"><div class="chapter-title"><span class="index">08</span><div><h2>Borrow collections; consume with intent</h2><p class="deck">Iteration is an ownership decision too.</p></div></div>
+<p><code>Vec&lt;T&gt;</code> owns a growable sequence. <code>&amp;[T]</code> borrows a slice and lets functions accept arrays or vectors. For a Vec, <code>iter()</code> yields shared references, <code>iter_mut()</code> yields mutable references, and consuming <code>into_iter()</code> yields owned items. Read the receiver type: into_iter on a reference can yield references.</p>
+<Example name="iterator" />
+<p>Iterator adapters are lazy. A consumer such as collect, sum, or a for loop drives the work. Use a plain loop when it communicates state changes more clearly. Collecting into <code>Result&lt;Vec&lt;T&gt;, E&gt;</code> can stop at the first error; the starter uses that behavior to reject invalid input.</p>
+<aside><h3>Text has more than one length</h3><p><code>String::len()</code> counts bytes. <code>chars()</code> iterates Unicode scalar values, which are not necessarily visible characters. Rust disallows integer indexing into str; byte slicing requires UTF-8 boundaries and can panic. Prefer <code>get(range)</code> when boundaries are uncertain. For filesystem paths use Path / PathBuf and OS-native arguments rather than assuming UTF-8.</p></aside>
+<p class="cite">Read the source: <a href="https://doc.rust-lang.org/book/ch13-02-iterators.html">The Book · Iterators</a> · <a href="https://doc.rust-lang.org/book/ch08-02-strings.html">The Book · UTF-8 strings</a></p></section>

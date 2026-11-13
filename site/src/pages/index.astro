@@ -1,0 +1,82 @@
+---
+import Base from "../layouts/Base.astro";
+import sources from "../data/sources.json";
+import { verified, passes } from "../data/verified";
+import Ch01Start from "../chapters/01-start.astro";
+import Ch02Current from "../chapters/02-current.astro";
+import Ch03Syntax from "../chapters/03-syntax.astro";
+import Ch04Ownership from "../chapters/04-ownership.astro";
+import Ch05Lifetimes from "../chapters/05-lifetimes.astro";
+import Ch06Model from "../chapters/06-model.astro";
+import Ch07Errors from "../chapters/07-errors.astro";
+import Ch08Collections from "../chapters/08-collections.astro";
+import Ch09Abstraction from "../chapters/09-abstraction.astro";
+import Ch10Concurrency from "../chapters/10-concurrency.astro";
+import Ch11Workflow from "../chapters/11-workflow.astro";
+import Ch12Judgment from "../chapters/12-judgment.astro";
+import Ch13Practice from "../chapters/13-practice.astro";
+import Ch14Maintenance from "../chapters/14-maintenance.astro";
+import Ch15Sources from "../chapters/15-sources.astro";
+
+const passing = verified.examples.filter(passes).length;
+const failing = verified.examples.length - passing;
+---
+<Base
+  title="Rust / A working field guide"
+  description={`A practical, source-linked Rust primer for stable ${verified.toolchain} and edition ${verified.edition}. Every example is compiled by the real compiler at build time.`}
+>
+<div class="layout">
+  <nav aria-label="Chapters">
+    <p class="eyebrow">The bench index</p>
+    <label class="eyebrow" for="search">Find a topic</label>
+    <input id="search" type="search" placeholder="ownership, tests, async…" />
+    <p id="search-status" class="empty" role="status"></p>
+    <div class="navlinks">
+      <a href="#start">01 / Your first working loop</a>
+      <a href="#current">02 / Current, with a date attached</a>
+      <a href="#syntax">03 / Read the shape of Rust</a>
+      <a href="#ownership">04 / The ownership observatory</a>
+      <a href="#lifetimes">05 / Lifetimes describe relationships</a>
+      <a href="#model">06 / Let the data model do work</a>
+      <a href="#errors">07 / Give failures a useful shape</a>
+      <a href="#collections">08 / Borrow collections; consume with intent</a>
+      <a href="#abstraction">09 / Abstract after the concrete case</a>
+      <a href="#concurrency">10 / Choose the concurrency you actually need</a>
+      <a href="#workflow">11 / A daily development bench</a>
+      <a href="#judgment">12 / The senior-developer review desk</a>
+      <a href="#practice">13 / Four sessions to a useful Rust habit</a>
+      <a href="#maintenance">14 / Maintain a kit you understand</a>
+      <a href="#sources">15 / The reading room</a>
+    </div>
+  </nav>
+  <main id="main">
+    <div class="hero">
+      <p class="eyebrow">A practical primer for people who build</p>
+      <h1>Make it work.<br />Know <em>why.</em></h1>
+      <div class="hero-grid">
+        <div>
+          <p class="intro">Rust turns questions about ownership, failure and concurrency into decisions you can inspect. Learn the language by making those decisions visible.</p>
+          <div class="hero-links"><a href="#start">Start building ↗</a><a href="#ownership">Enter the ownership lab</a><a href="/starter/">Read the starter project</a><a href="/examples/">All verified examples</a></div>
+        </div>
+        <div class="hero-note"><b>{verified.toolchain}</b>Pinned stable toolchain<br />Edition {verified.edition} · compiled at build<br /><br />15 chapters · 6 interactive experiments<br />{verified.examples.length} compiler-checked examples ({passing} run, {failing} rejected on purpose)<br />{sources.length} primary-source reading links</div>
+      </div>
+    </div>
+    <Ch01Start />
+    <Ch02Current />
+    <Ch03Syntax />
+    <Ch04Ownership />
+    <Ch05Lifetimes />
+    <Ch06Model />
+    <Ch07Errors />
+    <Ch08Collections />
+    <Ch09Abstraction />
+    <Ch10Concurrency />
+    <Ch11Workflow />
+    <Ch12Judgment />
+    <Ch13Practice />
+    <Ch14Maintenance />
+    <Ch15Sources />
+    <footer>Made as a working field guide. All interactions run in your browser. No trackers, CDNs, remote fonts or code-execution services. Every code sample and compiler message on this page was produced by <code>{verified.rustc}</code> when the site was built. Open source links deliberately when you want to read further.<br /><a href="/examples/">Verified examples</a> · <a href="/starter/">Starter project</a></footer>
+  </main>
+</div>
+</Base>

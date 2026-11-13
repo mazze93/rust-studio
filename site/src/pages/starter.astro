@@ -1,0 +1,48 @@
+---
+import Base from "../layouts/Base.astro";
+import Code from "../components/Code.astro";
+import { verified } from "../data/verified";
+import { Content as Readme } from "../../../starter/README.md";
+import cargoToml from "../../../starter/Cargo.toml?raw";
+import toolchain from "../../../starter/rust-toolchain.toml?raw";
+import lib from "../../../starter/src/lib.rs?raw";
+import main from "../../../starter/src/main.rs?raw";
+import cli from "../../../starter/tests/cli.rs?raw";
+import scores from "../../../starter/scores.txt?raw";
+
+// Rendered straight from the repository at build time, so this page cannot
+// drift from the code CI tests.
+const files = [
+  ["Cargo.toml", cargoToml],
+  ["rust-toolchain.toml", toolchain],
+  ["src/lib.rs", lib],
+  ["src/main.rs", main],
+  ["tests/cli.rs", cli],
+  ["scores.txt", scores],
+] as const;
+---
+<Base
+  title="Signal Notebook / Rust starter project"
+  description="A dependency-free Rust CLI and library for practising ownership, validated types, errors and tests."
+>
+  <main id="main" class="page">
+    <p class="eyebrow">Starter project · rustc {verified.toolchain}</p>
+    <div class="prose"><Readme /></div>
+    <p>
+      Last verified build output for <code>{verified.starter.command}</code>:
+      <code>{verified.starter.stdout.trim()}</code>
+    </p>
+    <h2>Source</h2>
+    <ul class="file-list">
+      {files.map(([path]) => <li><a href={`#${path}`}>{path}</a></li>)}
+    </ul>
+    {
+      files.map(([path, text]) => (
+        <section id={path}>
+          <Code label={`starter/${path}`} code={text} />
+        </section>
+      ))
+    }
+    <footer><a href="/">← Back to the field guide</a></footer>
+  </main>
+</Base>

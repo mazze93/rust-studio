@@ -1,0 +1,9 @@
+---
+import Example from "../components/Example.astro";
+---
+<section id="model" class="chapter"><div class="chapter-title"><span class="index">06</span><div><h2>Let the data model do work</h2><p class="deck">A valid state should be easy to express.</p></div></div>
+<p>A struct groups fields that belong together. An enum chooses one variant, optionally carrying data. This lets a completed job carry output while a queued job has none. An exhaustive match forces the code to account for every variant.</p>
+<Example name="enum" />
+<p><code>Option&lt;T&gt;</code> expresses presence or absence using Some and None. Use it when absence is a normal possibility: the starter returns <code>None</code> for the mean of an empty input. Zero would claim a result that was never measured.</p>
+<div class="callout"><h3>Library-team wisdom: distinguish meanings with types</h3><p>The Rust API Guidelines recommend newtypes when values with the same representation have different meanings. In the starter, the private field in <code>Score(u8)</code> and its checked constructor keep values above 100 out of normal callers' hands. Keep the guarantee small and inspectable; do not encode every business rule into elaborate type machinery.</p></div>
+<p class="cite">Read the source: <a href="https://doc.rust-lang.org/book/ch06-00-enums.html">The Book · Enums and pattern matching</a> · <a href="https://rust-lang.github.io/api-guidelines/type-safety.html">API Guidelines · Type safety</a></p></section>

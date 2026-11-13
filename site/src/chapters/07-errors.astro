@@ -1,0 +1,9 @@
+---
+import Example from "../components/Example.astro";
+---
+<section id="errors" class="chapter"><div class="chapter-title"><span class="index">07</span><div><h2>Give failures a useful shape</h2><p class="deck">Expected failure is part of the API.</p></div></div>
+<p><code>Result&lt;T, E&gt;</code> contains either Ok(value) or Err(error). The <code>?</code> operator returns early on an error, with supported conversion into the enclosing function's error type. It does not log or recover automatically.</p>
+<Example name="result" />
+<p>The starter's library returns a concrete <code>ParseScoreError</code> with a line number; its CLI collects different failures behind <code>Box&lt;dyn Error&gt;</code> and prints one message at the boundary. Real applications often add context such as the operation and path, while avoiding sensitive payloads.</p>
+<article class="wisdom"><p class="eyebrow">Practitioner note / Andrew Gallant</p><h3>Make the panic policy about invariants.</h3><p>Gallant argues that unwrap or expect can be appropriate when failure would reveal a programming bug, and in tests. Expected operational failures should use error handling. This is a reasoned policy, not a blanket license to panic. In this starter, invalid file contents return an error; tests use unwrap to make unexpected setup failure fail the test.</p><p class="application">Apply it: for each expect, explain why failure is a bug. If the answer is “the user might type something else,” return a Result.</p></article>
+<p class="cite">Read the source: <a href="https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html">The Book · Result</a> · <a href="https://burntsushi.net/unwrap/">Andrew Gallant · Using unwrap() in Rust is Okay</a></p></section>

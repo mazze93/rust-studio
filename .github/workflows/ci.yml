@@ -1,0 +1,82 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rust:
+    name: verify examples + starter
+    runs-on: ubuntu-latest # examples are platform-neutral; macOS minutes cost 10x on private repos
+    env:
+      RUSTFLAGS: -Dwarnings
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Install the pinned toolchain
+        run: |
+          toolchain="$(python3 -c 'import re, tomllib; t = tomllib.load(open("rust-toolchain.toml", "rb"))["toolchain"]["channel"]; assert re.fullmatch(r"[0-9]+\.[0-9]+\.[0-9]+", t), "exact Rust version required"; print(t)')"
+          rustup toolchain install "$toolchain" --profile minimal --component rustfmt --component clippy
+          rustc --version
+
+      - name: studio-verify (fmt, clippy, unit tests)
+        run: |
+          cargo fmt --all -- --check
+          cargo clippy --locked --all-targets -- -D warnings
+          cargo test --locked
+
+      - name: Compiler record is current
+        # Recompiles every example and the starter; fails if
+        # site/src/data/verified.json differs from what rustc produces now.
+        run: cargo run --locked -p studio-verify -- check
+
+      - name: Starter checks
+        working-directory: starter
+        run: |
+          cargo fmt -- --check
+          cargo clippy --locked --all-targets -- -D warnings
+          cargo test --locked
+
+  site:
+    name: astro check + build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: site/.nvmrc
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: npx astro check
+      - run: npx astro build
+      - name: No inline script or style (CSP is script-src/style-src 'self')
+        run: |
+          ! grep -rE '<script>|<script type="module">|<style|style="' dist --include='*.html'
+      - name: Wrangler config validates
+        run: npx wrangler deploy --dry-run --outdir ../wrangler-dry-run
+
+  audit:
+    name: advisories (non-blocking)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: site/.nvmrc
+      - working-directory: site
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm audit --audit-level=low

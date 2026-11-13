@@ -1,0 +1,19 @@
+/* Additions for the Astro port; the original primer styles are primer.css. */
+header .brand{color:inherit;text-decoration:none}
+.output{margin:0;border:0;border-top:1px solid #536055;padding:0}
+.output summary{font:600 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;padding:14px 13px;min-height:0}
+.output[open] summary{margin-bottom:0}
+.output pre{border-top:1px solid #3c4740;color:#d9e4d5;font-size:13px}
+.codebox[data-outcome="fail"] .codehead span::before{content:"× ";color:#e7a58f}
+.codebox[data-outcome="pass"] .codehead span::before{content:"✓ ";color:#a9cfa9}
+.lab .output{border-top:1px solid #627066;margin-bottom:16px}
+.lab .output pre{padding:18px 0;min-height:0}
+.lab-explain{font-size:15px;padding-top:4px}
+.accessed{color:var(--muted)}
+.page{max-width:900px;margin:0 auto;padding:40px 24px 80px}
+.page h1{font-size:clamp(3rem,6vw,5.6rem)}
+.file-list{list-style:none;padding:0}
+.prose h1,.prose h2{font-family:Georgia,"Times New Roman",serif;font-weight:400}
+.prose pre{background:var(--dark);color:var(--light)}
+@media(max-width:700px){.page{padding:28px 16px 60px}}
+.lab .ownership-map{margin-bottom:20px}

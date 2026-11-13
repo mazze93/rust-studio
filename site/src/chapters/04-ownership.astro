@@ -1,0 +1,9 @@
+---
+import OwnershipLab from "../components/OwnershipLab.astro";
+---
+<section id="ownership" class="chapter"><div class="chapter-title"><span class="index">04</span><div><h2>The ownership observatory</h2><p class="deck">Predict first. Reveal the compiler’s answer second.</p></div></div>
+<p>Moving an owned String transfers responsibility for its allocation. A borrow gives access while the owner retains responsibility. Shared references permit observation; an exclusive reference permits mutation. References must remain valid, and conflicting access to the same data cannot overlap. Types such as integers implement <code>Copy</code>, so assignment copies their value instead of invalidating the source.</p>
+<OwnershipLab />
+<p><strong>Reading a borrow error:</strong> find the original access, the conflicting access, and the later use keeping the borrow alive. Try shortening the borrow or separating computation from mutation. A clone is a valid design choice when two independent owned values are actually needed; it is not a universal fix.</p>
+<p>This model covers ordinary references. Interior-mutability types such as RefCell and Mutex impose their own runtime rules; they do not erase the need to reason about access.</p>
+<p class="cite">Read the source: <a href="https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html">The Book · References and borrowing</a></p></section>

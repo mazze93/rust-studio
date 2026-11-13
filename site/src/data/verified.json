@@ -85,6 +85,13 @@
       "stderr": "error[E0382]: borrow of moved value: `first`\n --> examples/move.rs:5:16\n  |\n3 |     let first = String::from(\"signal\");\n  |         ----- move occurs because `first` has type `String`, which does not implement the `Copy` trait\n4 |     let second = first;\n  |                  ----- value moved here\n5 |     println!(\"{first} / {second}\");\n  |                ^^^^^ value borrowed here after move\n  |\nhelp: consider cloning the value if the performance cost is acceptable\n  |\n4 |     let second = first.clone();\n  |                       ++++++++\n\nerror: aborting due to 1 previous error\n\nFor more information about this error, try `rustc --explain E0382`.\n"
     },
     {
+      "name": "never",
+      "expect": "pass",
+      "source": "// expect: pass\n// Rust 1.100: `!` is a type you can name, and Infallible is now `!`.\nfn byte_len(input: &str) -> Result<usize, !> {\n    Ok(input.len()) // this operation cannot fail, and the type says so\n}\nfn main() {\n    let Ok(len) = byte_len(\"signal\"); // no Err arm: it cannot exist\n    let flag = \"--verbose\".trim_prefix(\"--\");\n    println!(\"{len} bytes, flag {flag}\");\n}\n",
+      "stdout": "6 bytes, flag verbose\n",
+      "stderr": ""
+    },
+    {
       "name": "result",
       "expect": "pass",
       "source": "// expect: pass\nuse std::num::ParseIntError;\nfn double(input: &str) -> Result<u16, ParseIntError> {\n    let value: u8 = input.parse()?;\n    Ok(u16::from(value) * 2)\n}\nfn main() -> Result<(), ParseIntError> {\n    assert_eq!(double(\"128\")?, 256);\n    assert!(double(\"invalid\").is_err());\n    Ok(())\n}\n",

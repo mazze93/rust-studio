@@ -1,0 +1,9 @@
+---
+import Example from "../components/Example.astro";
+---
+<section id="syntax" class="chapter"><div class="chapter-title"><span class="index">03</span><div><h2>Read the shape of Rust</h2><p class="deck">Types make promises; expressions produce values.</p></div></div>
+<p><code>let</code> creates a binding. Add <code>mut</code> when that binding needs reassignment or mutable access. Shadowing with a new <code>let</code> creates a fresh binding and may change its type. A function declares parameter types and uses <code>-&gt;</code> for its return type. Its final expression supplies the return value when you omit the semicolon.</p>
+<Example name="basics" />
+<p><code>u8</code> is an unsigned 8-bit integer; <code>usize</code> is sized for the target architecture and commonly represents lengths. <code>String</code> owns growable text. <code>&amp;str</code> borrows UTF-8 text. The exclamation mark in <code>println!</code> denotes a macro. <code>::</code> selects a path item or associated function; <code>.</code> calls methods or accesses fields.</p>
+<p>The example's <code>expect</code> documents a known literal invariant. Do not copy that choice onto arbitrary user input: the error-handling chapter shows how to propagate failures.</p>
+<p class="cite">Read the source: <a href="https://doc.rust-lang.org/book/ch03-01-variables-and-mutability.html">The Book · Variables and mutability</a> · <a href="https://doc.rust-lang.org/book/ch08-02-strings.html">The Book · UTF-8 strings</a></p></section>

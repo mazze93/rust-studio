@@ -1,0 +1,18 @@
+---
+import Code from "../components/Code.astro";
+---
+<section id="workflow" class="chapter"><div class="chapter-title"><span class="index">11</span><div><h2>A daily development bench</h2><p class="deck">Short feedback while writing; broader evidence before shipping.</p></div></div>
+<div class="table-wrap"><table><thead><tr><th>Command</th><th>What it tells you</th><th>What it does not prove</th></tr></thead><tbody>
+<tr><td><code>cargo check</code></td><td>Type and borrow checking</td><td>Correct business behavior</td></tr>
+<tr><td><code>cargo fmt --check</code></td><td>Formatting agrees with rustfmt</td><td>Design quality</td></tr>
+<tr><td><code>cargo clippy --all-targets -- -D warnings</code></td><td>Selected compiler/lint diagnostics are clean</td><td>Absence of bugs</td></tr>
+<tr><td><code>cargo nextest run</code></td><td>Unit/integration test execution</td><td>Doc tests; run cargo test --doc too</td></tr>
+<tr><td><code>cargo llvm-cov --html</code></td><td>Instrumented code exercised by tests</td><td>Useful assertions or complete requirements</td></tr>
+<tr><td><code>cargo audit</code></td><td>Lockfile matches against known advisories</td><td>Safety of every dependency or your code</td></tr>
+<tr><td><code>cargo deny check</code></td><td>Configured dependency policy checks</td><td>A security or legal certification</td></tr>
+<tr><td><code>bacon</code></td><td>Continuous local feedback as files change</td><td>A replacement for complete checks</td></tr>
+</tbody></table></div>
+<Code label="shell" code={"cargo nextest run\ncargo test --doc\ncargo llvm-cov --html\ncargo doc --no-deps\nRUST_BACKTRACE=1 cargo run -- scores.txt\nrust-lldb target/debug/signal-notebook"} />
+<p>In LLDB, try <code>breakpoint set --name signal_notebook::main</code>, <code>run scores.txt</code>, <code>next</code>, and <code>frame variable</code>. Debugger process-launch permissions are separate from compilation. Zed also exposes Rust debugging; its first session may fetch its CodeLLDB adapter.</p>
+<p>Use unit tests for small behavior, integration tests for the public boundary, and doc tests for examples promised to callers. The starter checks domain edges, bad input, original line numbers, empty data, CLI success, and CLI failure. It also includes a documentation test.</p>
+<p class="cite">Read the source: <a href="https://nexte.st/docs/installation/pre-built-binaries/">nextest · Installation</a> · <a href="https://github.com/taiki-e/cargo-llvm-cov">cargo-llvm-cov · Project documentation</a> · <a href="https://embarkstudios.github.io/cargo-deny/checks/cfg.html">cargo-deny · Configuration</a> · <a href="https://zed.dev/docs/languages/rust">Zed · Rust</a></p></section>

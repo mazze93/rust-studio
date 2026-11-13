@@ -1,0 +1,27 @@
+{
+  // rust.mazzeleczzare.com — a static Astro build served by Workers Static
+  // Assets. There is deliberately no `main`: with no Worker script, asset
+  // requests are served from Cloudflare's edge without invoking compute,
+  // so they are free and add no cold start. Add a script only for a real
+  // dynamic need.
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "rust-studio",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist",
+    // Matches astro.config.mjs (trailingSlash: always, format: directory):
+    // /examples redirects to /examples/ instead of serving a duplicate URL.
+    "html_handling": "auto-trailing-slash",
+    // Serve dist/404.html with a real 404 status for unknown paths.
+    "not_found_handling": "404-page"
+  },
+  // One canonical public URL. No *.workers.dev duplicate, no preview URLs.
+  "workers_dev": false,
+  "preview_urls": false,
+  // Declared here rather than clicked in a dashboard: the zone is in this
+  // account, so Cloudflare creates and manages the DNS record itself.
+  // NOT studio.mazzeleczzare.com — that is an unrelated live site.
+  "routes": [
+    { "pattern": "rust.mazzeleczzare.com", "custom_domain": true }
+  ]
+}

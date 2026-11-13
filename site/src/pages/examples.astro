@@ -1,0 +1,36 @@
+---
+import Base from "../layouts/Base.astro";
+import Example from "../components/Example.astro";
+import { verified, passes } from "../data/verified";
+
+const sorted = [...verified.examples].sort(
+  (a, b) => Number(passes(b)) - Number(passes(a)) || a.name.localeCompare(b.name),
+);
+---
+<Base
+  title="Verified examples / Rust field guide"
+  description={`Every example in the Rust field guide, with the real output and diagnostics from rustc ${verified.toolchain}.`}
+>
+  <main id="main" class="page">
+    <p class="eyebrow">Compiler record</p>
+    <h1>Verified <em>examples</em></h1>
+    <p>
+      Each file below lives in <code>examples/</code> and declares its expected outcome on its first line.
+      When the site is built, <code>studio-verify</code>, a small Rust program, compiles each one with
+      <code>{verified.rustc}</code> (edition {verified.edition}). It runs the ones that should pass with
+      warnings denied, and requires each failing one to raise exactly its declared error. If any
+      result disagrees with its declaration, the build stops instead of publishing the page.
+    </p>
+    {
+      sorted.map((ex) => (
+        <section id={ex.name}>
+          <h2>
+            <a href={`#${ex.name}`}>{ex.name}</a>
+          </h2>
+          <Example name={ex.name} />
+        </section>
+      ))
+    }
+    <footer><a href="/">← Back to the field guide</a></footer>
+  </main>
+</Base>
