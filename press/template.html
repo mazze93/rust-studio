@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Rust Field Guide · A working field guide, rustc {{TOOLCHAIN}}</title>
+<meta name="description" content="A practical, source-linked Rust primer for stable {{TOOLCHAIN}} and edition {{EDITION}}. Every example was compiled by the pinned compiler at build time.">
+<meta name="author" content="Mazze LeCzzare">
+<meta name="date" content="2026-11-18">
+<link rel="stylesheet" href="field-guide.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="masthead">
+  <a class="wordmark" href="#main">RUST / THE WORKING FIELD GUIDE</a>
+  <span class="stamp">Edition 02 · rustc {{TOOLCHAIN}} · verified at build</span>
+</header>
+<nav class="chapternav" aria-label="Chapters">
+{{NAV}}
+</nav>
+<main id="main">
+<div class="hero">
+  <p class="eyebrow">A practical primer for people who build</p>
+  <h1>Make it work.<br>Know <em>why.</em></h1>
+  <p class="intro">Rust turns questions about ownership, failure and concurrency into decisions you can inspect. Learn the language by making those decisions visible.</p>
+  <dl class="hero-facts">
+    <div><dt>Compiler</dt><dd>rustc {{TOOLCHAIN}}</dd></div>
+    <div><dt>Edition</dt><dd>{{EDITION}}</dd></div>
+    <div><dt>Examples</dt><dd>{{EXAMPLE_COUNT}} compiler-checked ({{PASS_COUNT}} run, {{FAIL_COUNT}} rejected on purpose)</dd></div>
+    <div><dt>Sources</dt><dd>{{SOURCE_COUNT}} primary-source links</dd></div>
+  </dl>
+</div>
+{{SECTIONS}}
+<footer class="colophon">
+  <p><strong>Colophon.</strong> Edition 02, sealed 2026-11-18 with <a href="https://press.mazzeleczzare.com/">Rustpress</a>. Every code sample and compiler diagnostic on this page was produced by <code>{{RUSTC}}</code> when the edition was built; <code>studio-verify</code> refuses to publish a stale result.</p>
+  <p>No scripts, no trackers, no remote resources. The evidence, examples and starter project are inspectable at <a href="https://github.com/mazze93/rust-studio">github.com/mazze93/rust-studio</a>. Printed sources are linked inline; every link was checked on the date shown beside it.</p>
+</footer>
+</main>
+</body>
+</html>
